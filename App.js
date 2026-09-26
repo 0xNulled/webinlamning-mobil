@@ -2,6 +2,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import TaskListScreen from './screens/TaskListScreen';
 import TaskDetailScreen from './screens/TaskDetailScreen';
+import BandList from './screens/BandScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -9,7 +10,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen
+        {/*<Stack.Screen
           name="TaskList"
           component={TaskListScreen}
           options={{title: "Uppgifter"}}
@@ -19,7 +20,8 @@ export default function App() {
           name="TaskDetail"
           component={TaskDetailScreen}
           options={{title: "Detaljer"}}
-        />
+        />*/}
+        <Stack.Screen name="BandList" component={BandList} />
       </Stack.Navigator>
     </NavigationContainer>
   );
