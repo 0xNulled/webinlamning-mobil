@@ -21,7 +21,8 @@ export default function App() {
           component={TaskDetailScreen}
           options={{title: "Detaljer"}}
         />*/}
-        <Stack.Screen name="BandList" component={BandList} />
+        <Stack.Screen name="AlbumList" component={BandList} />
+        <Stack.Screen name="Album" component={BandList} />
       </Stack.Navigator>
     </NavigationContainer>
   );

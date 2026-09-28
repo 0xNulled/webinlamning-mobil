@@ -7,37 +7,36 @@ const API_URL = "http://10.0.2.2:5245/";
 
 function BandCard(){
     const [album, setAlbum] = useState([]);
-    //const [err, setErr] = useState(true);
+    const [err, setErr] = useState(true);
     
     useEffect(() => {
         fetch(API_URL + 'api/album')
         .then((res) => res.json())
         .then((data) => setAlbum(data))
-        //.catch(() => setErr(`could not load ${API_URL}`)) //skapar render error? Fixa när UI fungerar
-        //.finally(() => setLoading(false))
-    })
+        .catch(() => setErr(`could not load ${API_URL}`))
+        //.finally(() => setLoading(false))r
+    }, []);
 
     return(
         <View className="CardHolder">
-            {album.map((a) => (
-                <View className="Card" key={a.id}>
-                    <View className="Article">
-                    <Image src={`${API_URL}${a.imageURL}`}></Image>
-                    <Text> {a.albumName} </Text>
-                    <Text> {a.artist} </Text>
-                    <Text>{(a.listeningStatus).toString()} </Text>
-                    <Pressable onClick={() => changeListeningStatus(a.id)}> change </Pressable>
-                    <Text onClick={((e) => e.stopPropagation())}>
-                        <input 
-                        type="file"
-                        accept="image/*"
-                        onChange={(e) => handleImageUpload(e, a.id)}/>
-                    </Text>
-                    </View>
-                </View> 
-            ))} 
+            <FlatList data={album} keyExtractor={(album) => album.id.toString()}
+            renderItem={({ item }) => (
+                <TouchableOpacity
+                style={styles.Card}
+                onPress={() => navigation.navigate()}>
+                    <Text> {item.albumName} </Text>
+                    <Text> {item.artist}</Text>
+                    <Text> Lyssnat genom albumet: {item.listeningStatus.toString()} </Text>
+                </TouchableOpacity>
+
+            )}>
+            </FlatList>
         </View>
-    )
+    );
 }
 
 export default BandCard
+
+const styles = StyleSheet.create({
+    Card: {flex: 1, padding: 16, backgroundColor: "#dadada", borderWidth: 1, borderColor: "black"}
+})
