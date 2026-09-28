@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 const API_URL = "http://10.0.2.2:5245/"; 
 
 
-function BandCard(){
+function BandCard({ navigation }){
     const [album, setAlbum] = useState([]);
     const [err, setErr] = useState(true);
     
@@ -23,7 +23,7 @@ function BandCard(){
             renderItem={({ item }) => (
                 <TouchableOpacity
                 style={styles.Card}
-                onPress={() => navigation.navigate()}>
+                onPress={() => navigation.navigate("AlbumView", { album: item })}>
                     <Text> {item.albumName} </Text>
                     <Text> {item.artist}</Text>
                     <Text> Lyssnat genom albumet: {item.listeningStatus.toString()} </Text>
