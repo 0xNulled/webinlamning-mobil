@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 const API_URL = "http://10.0.2.2:5245"; 
 
 
-function BandCard({ navigation }){
+function AlbumListScreen({ navigation }){
     const [album, setAlbum] = useState([]);
     const [err, setErr] = useState(true);
     
@@ -36,7 +36,7 @@ function BandCard({ navigation }){
     );
 }
 
-export default BandCard
+export default AlbumListScreen
 
 const styles = StyleSheet.create({
     CardListened: {flex: 1, padding: 16, backgroundColor: "#7ef58c", borderWidth: 1, borderColor: "black"},
